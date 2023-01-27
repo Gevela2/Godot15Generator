@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://d8rt87xrr1iy"]
+
+[sub_resource type="Gradient" id="Gradient_kjsbm"]
+colors = PackedColorArray(0.575361, 0.405743, 0.00292876, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_plh3p"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_caer1"]
+color_ramp = SubResource("Gradient_kjsbm")
+noise = SubResource("FastNoiseLite_plh3p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1k03"]
+albedo_color = Color(0.933333, 0.6, 0.423529, 1)
+albedo_texture = SubResource("NoiseTexture2D_caer1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7g0mm"]
+material = SubResource("StandardMaterial3D_b1k03")
+size = Vector3(25, 3, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lrgy6"]
+size = Vector3(25, 3, 25)
+
+[node name="Block2" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7g0mm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lrgy6")
